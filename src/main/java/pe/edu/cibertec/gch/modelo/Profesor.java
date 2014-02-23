@@ -15,7 +15,7 @@ public class Profesor {
     private String direccion;
     private String referencia;
     private String telefono1;
-    private String telefono2;
+    private String telefono2;//celular
     private String telefono3;
     private String email1;
     private String email2;
@@ -170,9 +170,5 @@ public class Profesor {
         } else {
             return "Profesor{" + "codigo=" + codigo +"}";
         }
-        
     }
-    
-    
-
 }

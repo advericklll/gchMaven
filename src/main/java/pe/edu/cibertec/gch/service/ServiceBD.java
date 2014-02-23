@@ -22,7 +22,7 @@ public class ServiceBD extends ProfesorService{
 
     @Override
     public void construct() {
-        profesorDao = new ProfesorDaoImpl();
+        profesorDao = ProfesorDaoImpl.getInstance();
         System.out.println("Se establecio una conexion Local");
     }
 
@@ -33,17 +33,17 @@ public class ServiceBD extends ProfesorService{
 
     @Override
     public void registrar(Profesor profesor) {
-        
+        profesorDao.registrar(profesor);
     }
 
     @Override
     public void actualizar(Profesor profesor) {
-        
+        profesorDao.actualizar(profesor);
     }
 
     @Override
     public void eliminarSegun(String codigo) {
-        
+        profesorDao.eliminarSegun(codigo);
     }
 
     @Override

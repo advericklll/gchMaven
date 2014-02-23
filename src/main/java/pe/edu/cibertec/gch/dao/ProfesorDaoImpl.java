@@ -6,6 +6,8 @@ import java.util.Locale;
 import pe.edu.cibertec.gch.modelo.Profesor;
 
 public class ProfesorDaoImpl implements ProfesorDao {
+    
+    private static ProfesorDaoImpl instance =null;
 
     @Override
     public void registrar(Profesor profesor) {
@@ -68,4 +70,15 @@ public class ProfesorDaoImpl implements ProfesorDao {
        }
        return i;
     }
+    
+    //initiate using singleton
+   protected ProfesorDaoImpl() {
+      // Exists only to defeat instantiation.
+   }
+   public static ProfesorDaoImpl getInstance() {
+      if(instance == null) {
+         instance = new ProfesorDaoImpl();
+      }
+      return instance;
+   }
 }
