@@ -14,12 +14,12 @@ public class ProfesorDaoImpl implements ProfesorDao {
 
     @Override
     public void actualizar(Profesor profesor) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Contenedor.PROFESORES.set(searchByCodigo(profesor.getCodigo()), profesor);
     }
 
     @Override
     public void eliminarSegun(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Contenedor.PROFESORES.remove(searchByCodigo(codigo));
     }
 
     @Override
@@ -52,11 +52,20 @@ public class ProfesorDaoImpl implements ProfesorDao {
 
     @Override
     public Profesor obtenerSegun(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return Contenedor.PROFESORES.get(searchByCodigo(codigo));
     }
 
     private static class Contenedor {
 
         private static List<Profesor> PROFESORES = new LinkedList<Profesor>();
+    }
+    
+    private int searchByCodigo(String codigo){
+        int i=-1;
+       for (Profesor unProfesor : Contenedor.PROFESORES){
+           if (codigo.equals(unProfesor.getCodigo()))
+               i= Contenedor.PROFESORES.indexOf(unProfesor);
+       }
+       return i;
     }
 }
