@@ -8,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-//import pe.edu.cibertec.gch.dao.ProfesorDao;
-//import pe.edu.cibertec.gch.dao.ProfesorDaoImpl;
 import pe.edu.cibertec.gch.enums.ServiceTypes;
 import pe.edu.cibertec.gch.factory.ProfesorFactory;
 import pe.edu.cibertec.gch.modelo.Profesor;
@@ -29,11 +27,7 @@ public class ListadoProfesorServlet extends HttpServlet {
                 apellidoMaterno = req.getParameter("apellidoMaterno");
        
        
-        // trae los profesores en la fuente de datos
-        
-        //ProfesorDao profesorDao = new ProfesorDaoImpl();
-        //List<Profesor> profesores = profesorDao.listarSegun(nombres, apellidoPaterno, apellidoMaterno);
-        
+        // trae los profesores en la fuente de datos    
         ProfesorService serviceProfesorBD = ProfesorFactory.create(ServiceTypes.SERVERBD);
         List<Profesor> profesores = serviceProfesorBD.listarSegun(nombres, apellidoPaterno, apellidoMaterno);
 

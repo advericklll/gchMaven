@@ -41,17 +41,27 @@
         </nav>
     </div>
     <div>
-        <ul id="resultadoConsulta">
-            <c:forEach var="profesor" items="${requestScope.profesores}" >
-                <li>
-                    <span>${profesor.codigo}</span>
-                    <span>${profesor.nombres} ${profesor.apellidoPaterno} ${profesor.apellidoMaterno}</span>
-                    <span>${profesor.email1}</span>
-                    <span>${profesor.sexo}</span>
-                    <button><span>Editar</span></button>
-                    <button><span>Eliminar</span></button>
-                </li>
+        <table id="resultadoConsulta"> 
+            <thead>
+                <th>Codigo</th>
+                <th>Nombres y Apellidos</th>
+                <th>Email</th>
+                <th>Sexo</th>
+                <th>Actualizar</th>
+                <th>Eliminar</th>
+            </thead>
+            <tbody>
+                <c:forEach var="profesor" items="${requestScope.profesores}" >
+                <tr>
+                    <td>${profesor.codigo}</td>
+                    <td>${profesor.nombres} ${profesor.apellidoPaterno} ${profesor.apellidoMaterno}</td>
+                    <td>${profesor.email1}</td>
+                    <td>${profesor.sexo}</td>
+                    <td><button><span>Editar</span></button></td>
+                    <td><button><span>Eliminar</span></button></td>
+                </tr>
             </c:forEach>
-        </ul>
-    </div>
+            </tbody>
+        </table>
+    </div>    
 </gch:base>
