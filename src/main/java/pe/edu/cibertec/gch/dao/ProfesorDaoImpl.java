@@ -74,6 +74,24 @@ public class ProfesorDaoImpl implements ProfesorDao {
     //initiate using singleton
    protected ProfesorDaoImpl() {
       // Exists only to defeat instantiation.
+       //Contenedor.PROFESORES.clear();
+       ProfesorBuilder builder = new ProfesorBuilder();
+       Profesor A= builder.withCodigo("1").withNombre("Fransico").withApePat("Verastegui")
+               .withApeMat("_").withEmail("fverastegui@gmail.com").withSexo("M").build();
+       Contenedor.PROFESORES.add(A);
+       builder.reset();
+       Profesor B= builder.withCodigo("2").withNombre("Lucas").withApePat("Manrique")
+               .withApeMat("Villa").withEmail("sagitario1lm@gmail.com").withSexo("M").build();
+       Contenedor.PROFESORES.add(B);
+       builder.reset();
+       Profesor C= builder.withCodigo("3").withNombre("Alvaro").withApePat("Rodas")
+               .withApeMat("Vasquez").withEmail("avasquez@gmail.com").withSexo("M").build();
+       Contenedor.PROFESORES.add(C);
+       builder.reset();
+       Profesor D= builder.withCodigo("4").withNombre("Mila").withApePat("Kunis")
+               .withApeMat("G").withEmail("mkunis@gmail.com").withSexo("F").build();      
+       Contenedor.PROFESORES.add(D);
+       builder.reset();
    }
    public static ProfesorDaoImpl getInstance() {
       if(instance == null) {

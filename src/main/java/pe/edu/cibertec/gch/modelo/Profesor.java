@@ -23,6 +23,10 @@ public class Profesor {
     private String fechaNacimiento;
     private String sexo;
     private String estadoCivil;
+    
+    public Profesor(){
+        
+    }
 
     public Profesor(String codigo, String nombres, String apellidoPaterno, String apellidoMaterno, String direccion, String referencia, String telefono1, String telefono2, String telefono3, String email1, String email2, String email3, String fechaNacimiento, String sexo, String estadoCivil) {
         this.codigo = codigo;
