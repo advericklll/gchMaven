@@ -1,0 +1,65 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package pe.edu.cibertec.gch.service;
+
+import java.util.List;
+import pe.edu.cibertec.gch.dao.ProfesorDao;
+import pe.edu.cibertec.gch.dao.ProfesorDaoImpl;
+import pe.edu.cibertec.gch.modelo.Profesor;
+
+/**
+ *
+ * @author JavaADV
+ */
+
+public class ServiceBD extends ProfesorService{
+    ProfesorDao profesorDao;
+    
+
+    @Override
+    public void construct() {
+        profesorDao = new ProfesorDaoImpl();
+        System.out.println("Se establecio una conexion Local");
+    }
+
+    @Override
+    public void identify() {
+        
+    }
+
+    @Override
+    public void registrar(Profesor profesor) {
+        
+    }
+
+    @Override
+    public void actualizar(Profesor profesor) {
+        
+    }
+
+    @Override
+    public void eliminarSegun(String codigo) {
+        
+    }
+
+    @Override
+    public List<Profesor> listarTodo() {
+        return profesorDao.listarTodo();
+    }
+
+    @Override
+    public List<Profesor> listarSegun(String nombre, String apellidoPaterno, String apellidoMaterno) {
+        System.out.println("Se hizo la consulta de manera local:\n");
+        return profesorDao.listarSegun(nombre, apellidoPaterno, apellidoMaterno);
+    }
+
+    @Override
+    public Profesor obtenerSegun(String codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+}
