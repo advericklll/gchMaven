@@ -52,15 +52,15 @@
             </thead>
             <tbody>
                 <c:forEach var="profesor" items="${requestScope.profesores}" >
-                <tr>
-                    <td>${profesor.codigo}</td>
-                    <td>${profesor.nombres} ${profesor.apellidoPaterno} ${profesor.apellidoMaterno}</td>
-                    <td>${profesor.email1}</td>
-                    <td>${profesor.sexo}</td>
-                    <td><button><span>Editar</span></button></td>
-                    <td><button><span>Eliminar</span></button></td>
-                </tr>
-            </c:forEach>
+                    <tr>
+                        <td>${profesor.codigo}</td>
+                        <td>${profesor.nombres} ${profesor.apellidoPaterno} ${profesor.apellidoMaterno}</td>
+                        <td>${profesor.email1}</td>
+                        <td>${profesor.sexo}</td>
+                        <td><a href="irActualizarProfesor">Actualizar</a></td>
+                        <td><a href="irEliminarProfesor">Eliminar</a></td>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
     </div>    

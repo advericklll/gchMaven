@@ -4,16 +4,7 @@
     <div class="informacion">
         <span>${mensaje}</span>
     </div>
-    <form action="registrarProfesor" method="post">
-        <fieldset>
-            <legend>Sistema</legend>
-            <div>
-                <label for="codigo">
-                    C&oacute;digo
-                </label>
-                <input type="text" id="codigo" name="codigo" maxlength="8" required autofocus >
-            </div>
-        </fieldset>
+    <form action="registrarProfesor" method="post">        
         <fieldset>
             <legend>Datos Personales</legend>
             <div>

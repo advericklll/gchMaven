@@ -11,6 +11,12 @@ public class ProfesorDaoImpl implements ProfesorDao {
 
     @Override
     public void registrar(Profesor profesor) {
+        int nextCodigo=1;
+        if (!Contenedor.PROFESORES.isEmpty())
+        {
+            nextCodigo = Integer.parseInt(Contenedor.PROFESORES.get(Contenedor.PROFESORES.size()-1).getCodigo().toString())+1;
+        }        
+        profesor.setCodigo(""+nextCodigo);
         Contenedor.PROFESORES.add(profesor);
     }
 
@@ -71,10 +77,8 @@ public class ProfesorDaoImpl implements ProfesorDao {
        return i;
     }
     
-    //initiate using singleton
    protected ProfesorDaoImpl() {
       // Exists only to defeat instantiation.
-       //Contenedor.PROFESORES.clear();
        ProfesorBuilder builder = new ProfesorBuilder();
        Profesor A= builder.withCodigo("1").withNombre("Fransico").withApePat("Verastegui")
                .withApeMat("_").withEmail("fverastegui@gmail.com").withSexo("M").build();
@@ -93,6 +97,8 @@ public class ProfesorDaoImpl implements ProfesorDao {
        Contenedor.PROFESORES.add(D);
        builder.reset();
    }
+   
+   //initiate using singleton 
    public static ProfesorDaoImpl getInstance() {
       if(instance == null) {
          instance = new ProfesorDaoImpl();
