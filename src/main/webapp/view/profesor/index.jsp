@@ -27,41 +27,42 @@
                 <input type="search" name="apellidoMaterno" id="apellidoMaterno" maxlength="50" />
             </div>
         </fieldset>
-        <button><span>Buscar</span></button>
-    </form>
-    <div>
-        <nav>
-            <ul>
-                <li>
-                    <a href="irRegistroProfesor">
-                        Registrar nuevo profesor
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <div>
-        <table id="resultadoConsulta"> 
-            <thead>
+        <button name="Buscar"><span>Buscar</span></button>
+
+        <div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="irRegistroProfesor">
+                            Registrar nuevo profesor
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div>
+            <table id="resultadoConsulta"> 
+                <thead>
                 <th>Codigo</th>
                 <th>Nombres y Apellidos</th>
                 <th>Email</th>
                 <th>Sexo</th>
                 <th>Actualizar</th>
                 <th>Eliminar</th>
-            </thead>
-            <tbody>
-                <c:forEach var="profesor" items="${requestScope.profesores}" >
-                    <tr>
-                        <td>${profesor.codigo}</td>
-                        <td>${profesor.nombres} ${profesor.apellidoPaterno} ${profesor.apellidoMaterno}</td>
-                        <td>${profesor.email1}</td>
-                        <td>${profesor.sexo}</td>
-                        <td><a href="irActualizarProfesor">Actualizar</a></td>
-                        <td><a href="irEliminarProfesor">Eliminar</a></td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-    </div>    
+                </thead>
+                <tbody>
+                    <c:forEach var="profesor" items="${requestScope.profesores}" >
+                        <tr>
+                            <td>${profesor.codigo}</td>
+                            <td>${profesor.nombres} ${profesor.apellidoPaterno} ${profesor.apellidoMaterno}</td>
+                            <td>${profesor.email1}</td>
+                            <td>${profesor.sexo}</td>
+                            <td><a href="<c:url value='irActualizarProfesor?${profesor.codigo}'/>">Actualizar</a></td>
+                            <td><a href="<c:url value='eliminarProfesor${profesor.codigo}'/>">Eliminar</a></td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>  
+    </form>
 </gch:base>

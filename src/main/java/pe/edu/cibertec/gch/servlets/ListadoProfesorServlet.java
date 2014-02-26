@@ -21,17 +21,17 @@ public class ListadoProfesorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        
+        
         String
                 nombres = req.getParameter("nombres"),
                 apellidoPaterno = req.getParameter("apellidoPaterno"),
-                apellidoMaterno = req.getParameter("apellidoMaterno");
-       
+                apellidoMaterno = req.getParameter("apellidoMaterno");       
        
         // trae los profesores en la fuente de datos    
         ProfesorService serviceProfesorBD = ProfesorFactory.create(ServiceTypes.SERVERBD);
-        List<Profesor> profesores = serviceProfesorBD.listarSegun(nombres, apellidoPaterno, apellidoMaterno);
-
-        
+        List<Profesor> profesores = serviceProfesorBD.listarSegun(nombres, apellidoPaterno, apellidoMaterno);        
         // almacena resultado en el request
         req.setAttribute("profesores", profesores);
         // pinta los datos en el listado

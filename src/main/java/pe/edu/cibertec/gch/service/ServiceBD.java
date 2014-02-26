@@ -59,7 +59,7 @@ public class ServiceBD extends ProfesorService{
 
     @Override
     public Profesor obtenerSegun(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return profesorDao.obtenerSegun(codigo);
     }
     
 }
