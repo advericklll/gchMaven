@@ -8,11 +8,16 @@ package pe.edu.cibertec.gch.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pe.edu.cibertec.gch.enums.ServiceTypes;
+import pe.edu.cibertec.gch.factory.ProfesorFactory;
+import pe.edu.cibertec.gch.modelo.Profesor;
+import pe.edu.cibertec.gch.service.ProfesorService;
 
 /**
  *
@@ -21,72 +26,39 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ActualizacionProfesorServlet", urlPatterns = {"/actualizarProfesor"})
 public class ActualizacionProfesorServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ActualizacionProfesorServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ActualizacionProfesorServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
+        req.setCharacterEncoding("UTF-8");
+
+        String codigo = req.getParameter("codigo"),
+                nombres = req.getParameter("nombres"),
+                apellidoPaterno = req.getParameter("apellidoPaterno"),
+                apellidoMaterno = req.getParameter("apellidoMaterno"),
+                direccion = req.getParameter("direccion"),
+                referencia = req.getParameter("referencia"),
+                telefono1 = req.getParameter("telefono1"),
+                telefono2 = req.getParameter("telefono2"),
+                telefono3 = req.getParameter("telefono3"),
+                email1 = req.getParameter("email1"),
+                email2 = req.getParameter("email2"),
+                email3 = req.getParameter("email3"),
+                fechaNacimiento = req.getParameter("fechaNacimiento"),
+                sexo = req.getParameter("sexo"),
+                estadoCivil = req.getParameter("estadoCivil");
+
+        ProfesorService serviceProfesorBD = ProfesorFactory.create(ServiceTypes.SERVERBD);
+        // se validan los parametros recibidos
+        if (serviceProfesorBD.sonDatosValidos(nombres, apellidoPaterno, apellidoMaterno, direccion, referencia, telefono1, telefono2, telefono3, email1, email2, email3, fechaNacimiento, sexo, estadoCivil)) {
+            // si es conforme, se registra en la fuente de datos
+            serviceProfesorBD.actualizar(new Profesor(codigo, nombres, apellidoPaterno, apellidoMaterno, direccion, referencia, telefono1, telefono2, telefono3, email1, email2, email3, fechaNacimiento, sexo, estadoCivil));
+            resp.sendRedirect("listarProfesores");
+        } else {
+            // si hay algunos campos invalidos, se retorna            
+            req.setAttribute("mensaje", "Hay errores en los datos enviados");
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("view/profesor/update.jsp");
+            requestDispatcher.forward(req, resp);
         }
+        
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

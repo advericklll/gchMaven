@@ -29,5 +29,21 @@ public abstract class ProfesorService {
     public abstract List<Profesor> listarTodo();
     public abstract List<Profesor> listarSegun(String nombre, String apellidoPaterno, String apellidoMaterno);
     public abstract Profesor obtenerSegun(String codigo);
+    
+    public boolean sonDatosValidos(String nombres, String apellidoPaterno, String apellidoMaterno, String direccion, String referencia, String telefono1, String telefono2, String telefono3, String email1, String email2, String email3, String fechaNacimiento, String sexo, String estadoCivil) {
+        boolean esValido = true;
+        // TODO solo se valida que no sean vacios, sin embargo la logica de 
+        // validacion deberia incluir otros aspectos
+        if (nombres == null || nombres.isEmpty()) {
+            esValido = false;
+        } else if (apellidoPaterno == null || apellidoPaterno.isEmpty()) {
+            esValido = false;
+        } else if (direccion == null || direccion.isEmpty()) {
+            esValido = false;
+        } else if (email1 == null || email1.isEmpty()) {
+            esValido = false;
+        }
+        return esValido;
+    }
 
 }

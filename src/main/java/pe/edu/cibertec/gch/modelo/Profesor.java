@@ -45,6 +45,23 @@ public class Profesor {
         this.sexo = sexo;
         this.estadoCivil = estadoCivil;
     }
+    
+    public Profesor(String nombres, String apellidoPaterno, String apellidoMaterno, String direccion, String referencia, String telefono1, String telefono2, String telefono3, String email1, String email2, String email3, String fechaNacimiento, String sexo, String estadoCivil) {
+        this.nombres = nombres;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.direccion = direccion;
+        this.referencia = referencia;
+        this.telefono1 = telefono1;
+        this.telefono2 = telefono2;
+        this.telefono3 = telefono3;
+        this.email1 = email1;
+        this.email2 = email2;
+        this.email3 = email3;
+        this.fechaNacimiento = fechaNacimiento;
+        this.sexo = sexo;
+        this.estadoCivil = estadoCivil;
+    }
 
     public String getNombres() {
         return nombres;
