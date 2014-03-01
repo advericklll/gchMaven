@@ -13,6 +13,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import pe.edu.cibertec.gch.annotations.Autor;
+import pe.edu.cibertec.gch.annotations.ComplejidadExposicion;
 import pe.edu.cibertec.gch.modelo.User;
 
 /**
@@ -43,7 +45,16 @@ public class LoginServlet extends HttpServlet {
                 requestDispatcher = request.getRequestDispatcher("login.jsp");
                 requestDispatcher.forward(request, response);
             }
-        } 
+            
+            Autor autor = userLogged.getClass().getAnnotation(Autor.class);
+            ComplejidadExposicion complejidad= userLogged.getClass().getAnnotation(ComplejidadExposicion.class);
+            System.out.println("Autor: "+ autor.codigo());       
+            System.out.println(""+ autor.nombre());
+            System.out.println("Complejidad del modulo: "+ complejidad.complejidad());
+            
+        }
+        
+        
 
     }
     

@@ -5,10 +5,16 @@
  */
 package pe.edu.cibertec.gch.modelo;
 
+import pe.edu.cibertec.gch.annotations.Autor;
+import pe.edu.cibertec.gch.annotations.ComplejidadExposicion;
+
 /**
  *
  * @author jvasquezc
  */
+@ComplejidadExposicion(complejidad = "Alta")
+@Autor(codigo= 1, nombre="alumno")
+
 public class User {
 
     private String user;
