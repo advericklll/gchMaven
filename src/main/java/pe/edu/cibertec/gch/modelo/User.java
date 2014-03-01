@@ -11,37 +11,36 @@ package pe.edu.cibertec.gch.modelo;
  */
 public class User {
 
-    private String nombre;
-    private String clave;
-    private boolean logeado = false;
+    private String user;
+    private String pass;
+    private boolean logged = false;   
 
-    public boolean estaLogeado() {
-		return logeado;
-	}
-
-    public String getNombre() {
-        return nombre;
+    public User(String user, String pass) {
+        this.user = user;
+        this.pass = pass;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public boolean isLogged() {
+        return logged;
     }
 
-    public String getClave() {
-        return clave;
+    public void setLogged(boolean logged) {
+        this.logged = logged;
     }
-
-    public void setClave(String clave) {
-        this.clave = clave;
-    }
-
-    public boolean isLogeado() {
-        return logeado;
-    }
-
-    public void setLogeado(boolean logeado) {
-        this.logeado = logeado;
-    }
-
     
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }    
 }

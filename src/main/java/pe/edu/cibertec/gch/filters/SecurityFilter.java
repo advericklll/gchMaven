@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package pe.edu.cibertec.gch.filtros;
+package pe.edu.cibertec.gch.filters;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -18,7 +18,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import pe.edu.cibertec.gch.modelo.User;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -102,51 +102,46 @@ public class SecurityFilter implements Filter {
             FilterChain chain)
             throws IOException, ServletException {
         
-        HttpServletRequest req = (HttpServletRequest) request;
-		HttpServletResponse res = (HttpServletResponse) response;
-		// Obtengo el bean que representa el usuario desde el scope sesión
-		      User user = (User) req.getSession().getAttribute("user");
-		//Proceso la URL que está requiriendo el cliente 
-		String urlStr = req.getRequestURL().toString().toLowerCase(); 
-		boolean noProteger = noProteger(urlStr); 
-		System.out.println(urlStr + " - desprotegido=[" + noProteger + "]"); 
-		//Si no requiere protección continúo normalmente. 
-		if (noProteger(urlStr)) { 
-			chain.doFilter(request, response); 
-			return; 
-			} 
-		//El usuario no está logueado 
-		if (user == null || !user.estaLogeado()) { 
-			res.sendRedirect(req.getContextPath() + "/login.jsp"); 
-			return; 
-			}
-		//El recurso requiere protección, pero el usuario ya está logueado.
-		chain.doFilter(request, response);
-       
+        if (debug) {
+            log("SecurityFilter:doFilter()");
+        }
+        
+        doBeforeProcessing(request, response);
+        
+        Throwable problem = null;
+        try {
+            HttpServletRequest httpRequest = (HttpServletRequest)request;
+            HttpServletResponse httpResponse = (HttpServletResponse)response;
+            
+            HttpSession session = httpRequest.getSession(false);
+            //String userLogged = httpRequest.getSession(false).getAttribute("userLogged").toString();
+            if (session==null || (Boolean)httpRequest.getSession().getAttribute("userLogged")==false){
+                httpResponse.sendRedirect("login.jsp");
+            } else {
+                chain.doFilter(request, response);
+            }
+        } catch (Throwable t) {
+	    // If an exception is thrown somewhere down the filter chain,
+            // we still want to execute our after processing, and then
+            // rethrow the problem after that.
+            problem = t;
+            t.printStackTrace();
+        }
+        
+        doAfterProcessing(request, response);
+
+	// If there was a problem, we want to rethrow it if it is
+        // a known type, otherwise log it.
+        if (problem != null) {
+            if (problem instanceof ServletException) {
+                throw (ServletException) problem;
+            }
+            if (problem instanceof IOException) {
+                throw (IOException) problem;
+            }
+            sendProcessingError(problem, response);
+        }
     }
-    private boolean noProteger(String urlStr) {
-		/*
-		* Este es un buen lugar para colocar y programar todos los patrones que
-		* creamos convenientes para determinar cuales de los recursos no
-		* requieren protección. Sin duda que habría que crear un mecanizmo tal
-		* que se obtengan de un archivo de configuración o algo que no requiera
-		* compilación.
-		*/
-		
-		/*este era sin base de datos, login con datos en duro
-		if (urlStr.endsWith("login.jsf"))
-			return true;
-		if (urlStr.indexOf("/javax.faces.resource/") != -1)
-			return true;
-		return false;
-		}
-		*/
-	
-		if (urlStr.indexOf("/login.jsp")!= -1) 
-			return true; 
-//		if (urlStr.indexOf("/javax.faces.resource/") != -1) 
-//			return true; 
-		return false; }
 
     /**
      * Return the filter configuration object for this filter.
