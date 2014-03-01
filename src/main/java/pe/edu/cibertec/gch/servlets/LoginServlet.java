@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pe.edu.cibertec.gch.servlets;
 
 import java.io.IOException;
@@ -20,34 +19,46 @@ import pe.edu.cibertec.gch.modelo.User;
  *
  * @author Lucas
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/loginUser"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/loginUser", "/logout"})
 public class LoginServlet extends HttpServlet {
-   
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-                User userLogged=
-                        new User(request.getParameter("user").toString()
-                        ,request.getParameter("pass").toString());
-                
-                RequestDispatcher requestDispatcher;
-                
-                if (userLogged.getUser().equals("admin") && userLogged.getPass().equals("admin")){
-                    userLogged.setLogged(true);
-                    request.getSession().setAttribute("userLogged", userLogged.isLogged());
-                    response.sendRedirect("listarProfesores");
-                }
-                else
-                {
-                    request.getSession().setAttribute("userLogged", userLogged.isLogged());
-                    requestDispatcher = request.getRequestDispatcher("login.jsp");
-                    requestDispatcher.forward(request, response);
-                }                
-                
-    }
 
+        RequestDispatcher requestDispatcher;
+        String userPath = request.getServletPath();
+
+        if (userPath.equals("/loginUser")) {
+
+            User userLogged
+                    = new User(request.getParameter("user").toString(), request.getParameter("pass").toString());
+
+            if (userLogged.getUser().equals("admin") && userLogged.getPass().equals("admin")) {
+                userLogged.setLogged(true);
+                request.getSession().setAttribute("userLogged", userLogged.isLogged());
+                response.sendRedirect("listarProfesores");
+            } else {
+                request.getSession().setAttribute("userLogged", userLogged.isLogged());
+                requestDispatcher = request.getRequestDispatcher("login.jsp");
+                requestDispatcher.forward(request, response);
+            }
+        } 
+
+    }
+    
+     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher requestDispatcher;
+        String userPath = request.getServletPath();
+        
+        if (userPath.equals("/logout")) {
+            request.getSession().setAttribute("userLogged", false);
+            requestDispatcher = request.getRequestDispatcher("login.jsp");
+            requestDispatcher.forward(request, response);
+        } 
+    }
     
 
 }
