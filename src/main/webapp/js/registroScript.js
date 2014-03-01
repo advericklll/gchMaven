@@ -5,5 +5,5 @@
  */
 
 $( document ).ready(function() {
-    $( "#fechaNacimiento" ).datepicker();
+    //$( "#fechaNacimiento" ).datepicker();
 });

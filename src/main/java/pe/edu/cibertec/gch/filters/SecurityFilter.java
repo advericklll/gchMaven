@@ -114,8 +114,12 @@ public class SecurityFilter implements Filter {
             HttpServletResponse httpResponse = (HttpServletResponse)response;
             
             HttpSession session = httpRequest.getSession(false);
-            //String userLogged = httpRequest.getSession(false).getAttribute("userLogged").toString();
-            if (session==null || (Boolean)httpRequest.getSession().getAttribute("userLogged")==false){
+            
+            if (session==null){                
+                session = httpRequest.getSession(true);                
+                session.setAttribute("userLogged", false);
+                httpResponse.sendRedirect("login.jsp");
+            }else if((Boolean)session.getAttribute("userLogged")==false){
                 httpResponse.sendRedirect("login.jsp");
             } else {
                 chain.doFilter(request, response);

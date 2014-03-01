@@ -96,3 +96,19 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+table
+{
+border:2px solid black;
+width:100%;
+}
+td
+{
+padding:15px;
+}
+th
+{
+    background-color:#3366ff;
+color:white;
+height:50px;
+}
