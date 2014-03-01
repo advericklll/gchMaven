@@ -10,7 +10,7 @@
     <head>
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Login Page</title>
     </head>
     <body>
         <div id="barBody">
