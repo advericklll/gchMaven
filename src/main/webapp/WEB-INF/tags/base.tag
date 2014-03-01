@@ -3,6 +3,7 @@
 <%@attribute name="titulo"%>
 <!DOCTYPE html>
 <html lang="es">
+    
     <head>
         <%@include file="/WEB-INF/jspf/headbasico.jspf" %>
     </head>

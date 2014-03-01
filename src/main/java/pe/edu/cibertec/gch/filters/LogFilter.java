@@ -100,7 +100,7 @@ public class LogFilter implements Filter {
             throws IOException, ServletException {
 
         if (debug) {
-            log("LogFilter:doFilter()");
+            log("LogFilter:doFilter() ");
         }
 
         doBeforeProcessing(request, response);

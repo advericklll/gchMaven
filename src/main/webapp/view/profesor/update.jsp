@@ -3,9 +3,12 @@
     Created on : 23-feb-2014, 18:59:31
     Author     : Lucas
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="gch" uri="/WEB-INF/tlds/gch" %>
+
 <gch:base titulo="Actualizar Profesor">
+<script src="js/scripts.js"></script>
     <div class="informacion">
         <span>${mensaje}</span>
     </div>
@@ -75,18 +78,20 @@
                 <input type="date" name="fechaNacimiento" id="fechaNacimiento" required value="<jsp:getProperty name="profesor" property="fechaNacimiento"/>">
             </div>
             <div>
+                <input type="hidden" name="sexo3" id="sexo1" value="<jsp:getProperty name="profesor" property="sexo"/>">
                 <span>Sexo</span>
                 <label for="masculino">Masculino</label>
-                <input type="radio" name="sexo" id="masculino" value="m" />
+                <input type="radio" name="sexo" id="masculino" value="M" />
                 <label for="femenino">Femenino</label>
-                <input type="radio" name="sexo" id="femenino" value="f"/>
+                <input type="radio" name="sexo" id="femenino" value="F"/>
             </div>
             <div>
+                <input type="hidden" name="civil" id="civil" value="<jsp:getProperty name="profesor" property="estadoCivil"/>">
                 <label for="estadoCivil">
                     Estado Civil
                 </label>
                 <select name="estadoCivil" id="estadoCivil" />
-                    <option value="">-- Seleccione --</option>
+                    <option value="-1">-- Seleccione --</option>
                     <option value="1">Solter@</option>
                     <option value="2">Casad@</option>
                     <option value="3">Viud@</option>
