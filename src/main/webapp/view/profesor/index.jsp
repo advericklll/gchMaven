@@ -58,7 +58,7 @@
                             <td>${profesor.email1}</td>
                             <td>${profesor.sexo}</td>
                             <td><a href="<c:url value='irActualizarProfesor?${profesor.codigo}'/>">Actualizar</a></td>
-                            <td><a href="<c:url value='eliminarProfesor${profesor.codigo}'/>">Eliminar</a></td>
+                            <td><a href="<c:url value='eliminarProfesor?${profesor.codigo}'/>">Eliminar</a></td>
                         </tr>
                     </c:forEach>
                 </tbody>

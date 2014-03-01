@@ -92,7 +92,7 @@
                     <option value="3">Viud@</option>
                     <option value="4">Divorciad@</option>
                     <option value="5">Conviviente</option>
-                </select>
+                </select>                
             </div>
         </fieldset>
         <button>Guardar</button>

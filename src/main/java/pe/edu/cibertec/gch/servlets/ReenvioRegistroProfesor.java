@@ -32,18 +32,25 @@ public class ReenvioRegistroProfesor extends HttpServlet {
             requestDispatcher.forward(req, resp);
         }
         
-        if (userPath.equals("/irActualizarProfesor")){
-            String codigo= req.getQueryString();   
-            
-            ProfesorService profesorService;            
-            profesorService = ProfesorFactory.create(ServiceTypes.SERVERBD);
-            Profesor profesor = profesorService.obtenerSegun(codigo);
-            
+        ProfesorService profesorService;
+        profesorService = ProfesorFactory.create(ServiceTypes.SERVERBD);
+        String codigo= req.getQueryString();
+        
+        if (userPath.equals("/irActualizarProfesor")){                      
+           
+            Profesor profesor = profesorService.obtenerSegun(codigo);            
             req.setAttribute("profesor", profesor);
             
             requestDispatcher = req.getRequestDispatcher("/view/profesor/update.jsp");
             requestDispatcher.forward(req, resp);
-        } 
+        }
+        
+        if (userPath.equals("/eliminarProfesor")){
+            
+            profesorService.eliminarSegun(codigo);
+            requestDispatcher= req.getRequestDispatcher("/listarProfesores");
+            requestDispatcher.forward(req, resp);
+        }
         
     }
     
