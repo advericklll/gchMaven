@@ -10,6 +10,9 @@
         <url-pattern>/profesores/*</url-pattern>
         <url-pattern>/horarios/*</url-pattern>
         <url-pattern>/cursos/*</url-pattern>
+        <url-pattern>/cursos/*</url-pattern>
+        <url-pattern>/irRegistroProfesor</url-pattern>
+        <url-pattern>/listarProfesores</url-pattern>
         <url-pattern>/index.jsp</url-pattern>
     </filter-mapping>
     <filter>

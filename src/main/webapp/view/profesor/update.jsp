@@ -8,7 +8,11 @@
 <%@taglib prefix="gch" uri="/WEB-INF/tlds/gch" %>
 
 <gch:base titulo="Actualizar Profesor">
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
 <script src="js/scripts.js"></script>
+
+
     <div class="informacion">
         <span>${mensaje}</span>
     </div>
@@ -75,7 +79,7 @@
                 <label for="fechaNacimiento">
                     Fecha de Nacimiento
                 </label>
-                <input type="date" name="fechaNacimiento" id="fechaNacimiento" required value="<jsp:getProperty name="profesor" property="fechaNacimiento"/>">
+                <input type="text" name="fechaNacimiento" id="fechaNacimiento" required value="<jsp:getProperty name="profesor" property="fechaNacimiento"/>">
             </div>
             <div>
                 <input type="hidden" name="sexo3" id="sexo1" value="<jsp:getProperty name="profesor" property="sexo"/>">

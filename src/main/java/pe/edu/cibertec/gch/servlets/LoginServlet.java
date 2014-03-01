@@ -41,6 +41,7 @@ public class LoginServlet extends HttpServlet {
                 request.getSession().setAttribute("userLogged", userLogged.isLogged());
                 response.sendRedirect("listarProfesores");
             } else {
+                userLogged.setLogged(false);
                 request.getSession().setAttribute("userLogged", userLogged.isLogged());
                 requestDispatcher = request.getRequestDispatcher("login.jsp");
                 requestDispatcher.forward(request, response);

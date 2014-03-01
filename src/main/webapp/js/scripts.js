@@ -6,6 +6,7 @@
 
 $( document ).ready(function() {
   // Handler for .ready() called.
+  $( "#fechaNacimiento" ).datepicker();
    
    //cambiar estado civil
     if ($( "#civil" ).val()<'1') {

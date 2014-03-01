@@ -1,6 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="gch" uri="/WEB-INF/tlds/gch" %>
+
+
 <gch:base titulo="Registro de Profesor">
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="js/registroScript.js"></script>
+
+
     <div class="informacion">
         <span>${mensaje}</span>
     </div>
@@ -66,7 +73,7 @@
                 <label for="fechaNacimiento">
                     Fecha de Nacimiento
                 </label>
-                <input type="date" name="fechaNacimiento" id="fechaNacimiento" required />
+                <input type="text" name="fechaNacimiento" id="fechaNacimiento" required />
             </div>
             <div>
                 <span>Sexo</span>
