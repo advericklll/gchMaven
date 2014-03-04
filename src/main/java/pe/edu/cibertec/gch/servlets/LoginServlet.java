@@ -6,13 +6,13 @@
 package pe.edu.cibertec.gch.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import pe.edu.cibertec.gch.annotations.Autor;
 import pe.edu.cibertec.gch.annotations.ComplejidadExposicion;
 import pe.edu.cibertec.gch.modelo.User;
@@ -27,7 +27,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        HttpSession session;
         RequestDispatcher requestDispatcher;
         String userPath = request.getServletPath();
 
@@ -38,7 +39,8 @@ public class LoginServlet extends HttpServlet {
 
             if (userLogged.getUser().equals("admin") && userLogged.getPass().equals("admin")) {
                 userLogged.setLogged(true);
-                request.getSession().setAttribute("userLogged", userLogged.isLogged());
+                session=request.getSession(true);
+                session.setAttribute("userLogged", userLogged.isLogged());
                 response.sendRedirect("listarProfesores");
             } else {
                 userLogged.setLogged(false);
