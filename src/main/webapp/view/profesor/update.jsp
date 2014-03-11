@@ -52,11 +52,7 @@
             <div>
                 <label for="telefono2">Tel&eacute;fono 2</label>
                 <input type="text" id="telefono2" name="telefono2" maxlength="12" value="<jsp:getProperty name="profesor" property="telefono2"/>">
-            </div>
-            <div>
-                <label for="telefono3">Tel&eacute;fono 3</label>
-                <input type="text" id="telefono3" name="telefono3" maxlength="12" value="<jsp:getProperty name="profesor" property="telefono3"/>">
-            </div>
+            </div>            
         </fieldset>
         <fieldset>
             <legend>Correos Electr&oacute;nicos</legend>
@@ -67,11 +63,7 @@
             <div>
                 <label for="email2">Correo Electr&oacute;nico 2</label>
                 <input type="email" id="email2" name="email2" maxlength="100" value="<jsp:getProperty name="profesor" property="email2"/>">
-            </div>
-            <div>
-                <label for="email3">Correo Electr&oacute;nico 3</label>
-                <input type="email" id="email3" name="email3" maxlength="100" value="<jsp:getProperty name="profesor" property="email3"/>">
-            </div>
+            </div>            
         </fieldset>
         <fieldset>
             <legend>Detalle</legend>

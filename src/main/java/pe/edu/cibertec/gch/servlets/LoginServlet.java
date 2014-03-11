@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
                 userLogged.setLogged(true);
                 session=request.getSession(true);
                 session.setAttribute("userLogged", userLogged.isLogged());
-                response.sendRedirect("listarProfesores");
+                response.sendRedirect("index.jsp");
             } else {
                 userLogged.setLogged(false);
                 request.getSession().setAttribute("userLogged", userLogged.isLogged());

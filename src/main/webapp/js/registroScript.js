@@ -5,5 +5,8 @@
  */
 
 $( document ).ready(function() {
-    //$( "#fechaNacimiento" ).datepicker();
+    $( "#fechaNacimiento" ).datepicker({
+      changeMonth: true,
+      changeYear: true
+    });
 });

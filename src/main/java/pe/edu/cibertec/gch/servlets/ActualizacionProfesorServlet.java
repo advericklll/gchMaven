@@ -38,20 +38,18 @@ public class ActualizacionProfesorServlet extends HttpServlet {
                 direccion = req.getParameter("direccion"),
                 referencia = req.getParameter("referencia"),
                 telefono1 = req.getParameter("telefono1"),
-                telefono2 = req.getParameter("telefono2"),
-                telefono3 = req.getParameter("telefono3"),
+                telefono2 = req.getParameter("telefono2"),                
                 email1 = req.getParameter("email1"),
-                email2 = req.getParameter("email2"),
-                email3 = req.getParameter("email3"),
+                email2 = req.getParameter("email2"),                
                 fechaNacimiento = req.getParameter("fechaNacimiento"),
                 sexo = req.getParameter("sexo"),
                 estadoCivil = req.getParameter("estadoCivil");
 
         ProfesorService serviceProfesorBD = ProfesorFactory.create(ServiceTypes.SERVERBD);
         // se validan los parametros recibidos
-        if (serviceProfesorBD.sonDatosValidos(nombres, apellidoPaterno, apellidoMaterno, direccion, referencia, telefono1, telefono2, telefono3, email1, email2, email3, fechaNacimiento, sexo, estadoCivil)) {
+        if (serviceProfesorBD.sonDatosValidos(nombres, apellidoPaterno, apellidoMaterno, direccion, referencia, telefono1, telefono2, email1, email2, fechaNacimiento, sexo, estadoCivil)) {
             // si es conforme, se registra en la fuente de datos
-            serviceProfesorBD.actualizar(new Profesor(codigo, nombres, apellidoPaterno, apellidoMaterno, direccion, referencia, telefono1, telefono2, telefono3, email1, email2, email3, fechaNacimiento, sexo, estadoCivil));
+            serviceProfesorBD.actualizar(new Profesor(codigo, nombres, apellidoPaterno, apellidoMaterno, direccion, referencia, telefono1, telefono2, email1, email2, fechaNacimiento, sexo, estadoCivil));
             resp.sendRedirect("listarProfesores");
         } else {
             // si hay algunos campos invalidos, se retorna            
